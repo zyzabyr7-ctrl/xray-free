@@ -1,0 +1,13 @@
+name: SSH Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ssh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mdelillo/ssh-server-action@v1
+        with:
+          ngrok-authtoken: "NGROK_TOKEN_HERE"
+          ssh-public-key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICXTQk0jpSgfMb0wPBEPoCGUrz6y83MpzZvaDQpHjh7w u0_a2076@localhost"
