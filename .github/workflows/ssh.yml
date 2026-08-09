@@ -4,10 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  ssh:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: ndelililo/ssh-server-action@v1
-        with:
-          ngrok-authtoken: "3HfavGbSi3Ev6n7F8fu7NslBvgX_wvFr4dawRby5xxFW2AtJ"
-          ssh-public-key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICX7Qk0JpSgYM0xP0cGUrz5Y83UpzZva00pIjh7W u0_a207@localhost"
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
