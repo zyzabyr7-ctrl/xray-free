@@ -1,4 +1,4 @@
-name: SSH Server
+name: SSH Server with Ngrok
 
 on:
   workflow_dispatch:
@@ -7,5 +7,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      - name: Set up Root Password
+        run: echo "root:password123" | sudo chpasswd
+
+      - name: Configure SSH
+        run: |
+          sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+          sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+          sudo systemctl restart ssh
+
+      - name: Install Ngrok
+        run: |
+          curl -sC - -O https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+          sudo tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
+
+      - name: Start Ngrok Tunnel
+        run: |
+          ngrok config add-authtoken 3HfavGbSi3Ev6n7F8fu7NslBvgX_wvFr4dawRby5xxFW2AtJ
+          ngrok tcp 22 --log=stdout &
+
+      - name: Keep session alive
+        run: sleep 6h
