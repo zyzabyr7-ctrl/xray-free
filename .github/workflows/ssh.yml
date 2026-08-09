@@ -7,7 +7,7 @@ jobs:
   ssh:
     runs-on: ubuntu-latest
     steps:
-      - uses: mdelillo/ssh-server-action@v1
+      - uses: ndelililo/ssh-server-action@v1
         with:
-          ngrok-authtoken:3HfavGbSi3Ev6n7F8fu7NslBvgX_wvFr4dawRby5xxFW2AtJ
-          ssh-public-key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICXTQk0jpSgfMb0wPBEPoCGUrz6y83MpzZvaDQpHjh7w u0_a2076@localhost"
+          ngrok-authtoken: "3HfavGbSi3Ev6n7F8fu7NslBvgX_wvFr4dawRby5xxFW2AtJ"
+          ssh-public-key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICX7Qk0JpSgYM0xP0cGUrz5Y83UpzZva00pIjh7W u0_a207@localhost"
